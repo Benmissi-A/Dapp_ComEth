@@ -4,12 +4,12 @@ import LandingPage from "./components/pages/LandingPage";
 import Create from "./components/pages/Create";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import Vote from "./components/pages/Vote";
-import Proposition from "./components/pages/Proposition";
-import Info from "./components/pages/Info";
-import Stats from "./components/pages/Stats";
-import Budget from "./components/pages/Budget";
-import People from "./components/pages/People";
+// import Vote from "./components/pages/Vote";
+// import Proposition from "./components/pages/Proposition";
+// import Info from "./components/pages/Info";
+// import Stats from "./components/pages/Stats";
+// import Budget from "./components/pages/Budget";
+// import People from "./components/pages/People";
 import LandingHeader from "./components/organisms/LandingHeader";
 import MainHeader from "./components/organisms/MainHeader";
 //import ErrorTemlate from "./components/templates/ErrorTemlate";
@@ -33,7 +33,7 @@ const Dapp = ({ comEthAdr }) => {
         <Route exact path="/Home" component={Home}>
           <Home comEthAdr={comEthAdr} />
         </Route>
-        <Route exact path="/Vote" component={Vote}>
+        {/* <Route exact path="/Vote" component={Vote}>
           <Vote />
         </Route>
         <Route exact path="/Proposition" component={Proposition}>
@@ -50,7 +50,7 @@ const Dapp = ({ comEthAdr }) => {
         </Route>
         <Route exact path="/People" component={People}>
           <People />
-        </Route>
+        </Route> */}
       </Switch>
     </>
   );
