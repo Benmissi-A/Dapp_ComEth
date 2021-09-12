@@ -42,7 +42,7 @@ const Dapp = ({ comEthAdr }) => {
         <ComEthContextProvider comEthAdr={comEthAdr}>
 
           <Route exact path="/Home" component={Home}>
-            <Home comEthAdr={comEthAdr} />
+            <Home />
           </Route>
           <Route exact path="/Vote" component={Vote}>
             <Vote />

@@ -8,12 +8,18 @@ import HomeTemplate from "../templates/HomeTemplate";
 import { ComEthContext } from "../../context/ComEthContext";
 
 
-const Home = ({ comEthAdr }) => {
+const Home = () => {
   const comEth = useContext(ComEthContext);
   //const comEth = useContract(comEthAdr, ComEthAbi);
   useEffect(() => {
-    console.log("ComEth", comEth);
+    if(comEth){
+      console.log("ComEth home", comEth);
+      console.log("ComEth home address", comEth.address)
+    }else{
+      console.log('ComEth home no address')
+    }
   }, [comEth]);
+
   return (
     <>
       <Box w="100%" minH="100vh"  bgGradient="linear(to-t,teal.600, teal.400);">
