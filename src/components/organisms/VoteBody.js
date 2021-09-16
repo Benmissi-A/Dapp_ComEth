@@ -11,7 +11,7 @@ import {
   Stack,
   Tooltip
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ComEthContext } from "../../context/ComEthContext";
 const VoteBody = () => {
   const comEth = useContext(ComEthContext);
@@ -35,14 +35,26 @@ const VoteBody = () => {
       console.log(e.error);
     }
   };
+  
+  const handleChangeChoice = (e) => {
+    try {
+      setChoice(Number(e.target.value));
+    } catch (e) {
+      console.log(e.error);
+    }
+  };
+  useEffect(()=>{
+    if(handleChangeChoice){
+      setChoice(choice)
+      console.log( "choice", choice);
+    }
+  },[setChoice,choice])
 
   const handleClickSearchId = async () => {
     setProposal(proposal);
-    console.log("ok", id, proposal);
     try {
       let ide = await comEth.proposalById(id);
       const pr = ide.toString().split(",");
-
       setProposal({
         ...proposal,
         nbYes: pr[0],
@@ -58,13 +70,7 @@ const VoteBody = () => {
       console.log(e.error);
     }
   };
-  const handleChangeChoice = (e) => {
-    try {
-      setChoice(Number(e.target.value));
-    } catch (e) {
-      console.log(e.error);
-    }
-  };
+
   const handleClickVote = async () => {
     try {
       await comEth.vote(id, choice);
