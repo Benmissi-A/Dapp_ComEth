@@ -1,4 +1,4 @@
-export const ComEthFactoryAdress = "0x15F303f632977f0a57F79211Adc15e6403699857";
+export const ComEthFactoryAdress = "0x29A40F6fDFe1806721975e745fdA1575110B44B4";
 export const ComEthFactoryAbi = [
   {
     inputs: [
@@ -35,19 +35,6 @@ export const ComEthFactoryAbi = [
     name: "createComEth",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getComEths",
-    outputs: [
-      {
-        internalType: "contract ComEth[]",
-        name: "",
-        type: "address[]",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {

@@ -228,6 +228,19 @@ export const ComEthAbi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "getId",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -241,61 +254,6 @@ export const ComEthAbi = [
         internalType: "uint256",
         name: "",
         type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getProposalsList",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "nbYes",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "nbNo",
-            type: "uint256",
-          },
-          {
-            internalType: "enum ComEth.StatusVote",
-            name: "statusVote",
-            type: "uint8",
-          },
-          {
-            internalType: "uint256",
-            name: "createdAt",
-            type: "uint256",
-          },
-          {
-            internalType: "address",
-            name: "author",
-            type: "address",
-          },
-          {
-            internalType: "string",
-            name: "proposition",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "paiementReceiver",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "paiementAmount",
-            type: "uint256",
-          },
-        ],
-        internalType: "struct ComEth.Proposal[]",
-        name: "",
-        type: "tuple[]",
       },
     ],
     stateMutability: "view",
