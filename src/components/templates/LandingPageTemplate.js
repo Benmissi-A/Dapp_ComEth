@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heading, Circle, Center } from "@chakra-ui/react";
+import { Heading, Circle, Center, Tooltip } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Web3Context } from "web3-hooks";
 import { useContext } from "react";
@@ -22,18 +22,18 @@ const LandingPageTemplate = () => {
         <Heading>
           <Text
             textShadow="3px 3px #43A2F7"
-            mt={{sm:"10rem", lg:"10rem"}}
-            fontSize="100px"
+            mt={{sm:"11rem", lg:"10rem"}}
+            fontSize={{base:"73px",sm:"100px",lg:"100px"}}
             color="blue.700"
-            margin="4rem"
+            margin={{base:"7rem",sm:"4rem"}}
           >
             ComEth
           </Text>
         </Heading>
       </Center>
-      <Center marginBottom="4rem">
+      <Center marginBottom="3rem">
         <Text
-          color={"gray.500"}
+          color={"gray.600"}
           maxW={"4xl"}
           ml={{sm:"0.5rem"}}
           mr={{sm:"0.5rem"}}
@@ -42,34 +42,37 @@ const LandingPageTemplate = () => {
           textAlign="center"
           fontStyle="italic"
           fontWeight="bold"
-          fontSize="25px"
+          fontSize={{base:"22px",sm:"24px",lg:"25px"}}
         >
-          A new possibility to create communities and manage sharing funds
+          Une nouvelle possibilité de création de communautés et de gestion de fonds partagés
         </Text>
       </Center>
       <Center>
-        
+      <Tooltip rounded="md" label="Si vous n'avez pas de communauté, créez en une !" fontSize="md">
         <Link to={web3State.isLogged ? "/create" : "/"}>
           <Circle
           as="button"
           backgroundColor="blue.500"
           fontWeight="bold"
-          p="1rem"
-            marginRight="2rem"
+          p="0.8rem"
+          m={{base:"0.8rem",sm:"1rem"}}
+            marginRight={{base:"0.5rem", md:"2rem"}}
             colorScheme="blue"
             onClick={() => handleOnClickLogin()}
             _hover= {{bg:"#42daf5"}}
               _selected={{bg:"#055c6b"}}
           >
-            Create a Community
+            Créez votre ComEth
           </Circle>
         </Link>
-
+      </Tooltip>
+      <Tooltip rounded="md" label="Rejoignez votre communauté grace à son addresse" fontSize="md">
         <Link to={web3State.isLogged ? "/login" : "/"}>
           <Circle
           as="button"
           fontWeight="bold"
           p="1rem"
+          m={{base:"0.8rem",sm:"1rem"}}
           backgroundColor="blue.500"
             marginLeft="2rem"
             colorScheme="blue"
@@ -77,10 +80,10 @@ const LandingPageTemplate = () => {
               _hover= {{bg:"#42daf5"}}
               _selected={{bg:"#055c6b"}}
           >
-            Join a Community
+            Rejoignez votre ComEth
           </Circle>
         </Link>
-        
+       </Tooltip>
       </Center>
       <FooterLandingPage />
     </>

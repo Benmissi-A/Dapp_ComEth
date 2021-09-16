@@ -12,25 +12,26 @@ const NavInfoOnly = () => {
   return (
     <>
       <Box
-                pos="absolute"
-                top="0"
-                h="100%"
-                w={{ sm: "8rem", md: "9rem", lg: "10rem" }}
-                boxShadow="dark-lg"
-                backgroundColor="gray.900"
-            >
-                <Box pos="sticky" top="10" left="0">
-                    <Box mb="13rem">
-                    <Logo />
-                    </Box>
-                    <VoteButton />
+        pos="absolute"
+        display={{base:"none",sm:"none",md:" list-item"}}
+        top="0"
+        h="100%"
+        w={{ sm: "8rem", md: "9rem", lg: "10rem" }}
+        boxShadow="dark-lg"
+        backgroundColor="gray.900"
+      >
+        <Box pos="sticky" top="10" left="0">
+          <Box mb="13rem">
+            <Logo />
+          </Box>
+          <VoteButton />
           <ProposButton />
           <InfoButton />
           <StatsButton />
           <BudgetButton />
           <PeopleButton />
-                </Box>
-            </Box>
+        </Box>
+      </Box>
     </>
   );
 };

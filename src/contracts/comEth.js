@@ -2,11 +2,6 @@ export const ComEthAbi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "comEthOwner_",
-        type: "address",
-      },
-      {
         internalType: "uint256",
         name: "subscriptionPrice_",
         type: "uint256",
@@ -76,75 +71,13 @@ export const ComEthAbi = [
     anonymous: false,
     inputs: [
       {
-        indexed: true,
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        indexed: true,
-        internalType: "bytes32",
-        name: "previousAdminRole",
-        type: "bytes32",
-      },
-      {
-        indexed: true,
-        internalType: "bytes32",
-        name: "newAdminRole",
-        type: "bytes32",
+        indexed: false,
+        internalType: "uint256",
+        name: "proposalId",
+        type: "uint256",
       },
     ],
-    name: "RoleAdminChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "sender",
-        type: "address",
-      },
-    ],
-    name: "RoleGranted",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "sender",
-        type: "address",
-      },
-    ],
-    name: "RoleRevoked",
+    name: "Rejected",
     type: "event",
   },
   {
@@ -231,35 +164,9 @@ export const ComEthAbi = [
   },
   {
     inputs: [],
-    name: "DEFAULT_ADMIN_ROLE",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "addUser",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getActiveUsersNb",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -284,6 +191,19 @@ export const ComEthAbi = [
   {
     inputs: [],
     name: "getBalance",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getCreationTime",
     outputs: [
       {
         internalType: "uint256",
@@ -333,14 +253,14 @@ export const ComEthAbi = [
       {
         components: [
           {
-            internalType: "string[]",
-            name: "voteOptions",
-            type: "string[]",
+            internalType: "uint256",
+            name: "nbYes",
+            type: "uint256",
           },
           {
-            internalType: "uint256[]",
-            name: "voteCount",
-            type: "uint256[]",
+            internalType: "uint256",
+            name: "nbNo",
+            type: "uint256",
           },
           {
             internalType: "enum ComEth.StatusVote",
@@ -376,25 +296,6 @@ export const ComEthAbi = [
         internalType: "struct ComEth.Proposal[]",
         name: "",
         type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-    ],
-    name: "getRoleAdmin",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
       },
     ],
     stateMutability: "view",
@@ -484,42 +385,13 @@ export const ComEthAbi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "grantRole",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "hasRole",
+    inputs: [],
+    name: "getWithdrawalAmount",
     outputs: [
       {
-        internalType: "bool",
+        internalType: "uint256",
         name: "",
-        type: "bool",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -545,14 +417,14 @@ export const ComEthAbi = [
       {
         components: [
           {
-            internalType: "string[]",
-            name: "voteOptions",
-            type: "string[]",
+            internalType: "uint256",
+            name: "nbYes",
+            type: "uint256",
           },
           {
-            internalType: "uint256[]",
-            name: "voteCount",
-            type: "uint256[]",
+            internalType: "uint256",
+            name: "nbNo",
+            type: "uint256",
           },
           {
             internalType: "enum ComEth.StatusVote",
@@ -603,47 +475,6 @@ export const ComEthAbi = [
   {
     inputs: [
       {
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "renounceRole",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "role",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "revokeRole",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string[]",
-        name: "voteOptions_",
-        type: "string[]",
-      },
-      {
         internalType: "string",
         name: "proposition_",
         type: "string",
@@ -676,25 +507,6 @@ export const ComEthAbi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "bytes4",
-        name: "interfaceId",
-        type: "bytes4",
-      },
-    ],
-    name: "supportsInterface",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "toggleIsActive",
     outputs: [
@@ -704,19 +516,6 @@ export const ComEthAbi = [
         type: "bool",
       },
     ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "userAddress_",
-        type: "address",
-      },
-    ],
-    name: "toggleIsBanned",
-    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },

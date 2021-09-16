@@ -1,17 +1,18 @@
-# ComEth
+# ComEth DApp
 
-[![built-with openzeppelin](https://img.shields.io/badge/built%20with-OpenZeppelin-3677FF)](https://docs.openzeppelin.com/)
+[![made-with-Javascript](https://img.shields.io/badge/Made%20with-Javascript-1f425f.svg)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 
-## _Built by "Rhino Team" for its certification project at Alyra, the Blockchain School_ !
+[![built-with EthersJs](https://img.shields.io/badge/built%20with-Ethers_Js-3677FF)](https://docs.ethers.io/v5/)
+[![built-with chakra-ui](https://img.shields.io/badge/built%20with-Chakra_Ui-3677FF)](https://chakra-ui.com/)
 
-[Rhino Team](./public/favicon.ico)
+## _Built by "Equipe Epique" for its certification project at Alyra, the Blockchain School_ !
 
-#### Developers : Sarah Marques, Stella Soler, Amine Benmissi, Guillaume Bézie
+### Developers : Amine Benmissi, Guillaume Bézie, Sarah Marques, Stella Soler
 
-[![created-by LokieDieKatze](https://img.shields.io/badge/created%20by-LokiDieKatze-FFA07A)](https://github.com/LokiDieKatze)
-[![created-by StellaGreen](https://img.shields.io/badge/created%20by-StellaGreen-FFA07A)](https://github.com/StellaGreen)
 [![created-by Benmissi-A](https://img.shields.io/badge/created%20by-Benmissi-FFA07A)](https://github.com/Benmissi-A)
 [![created-by LokieDieKatze](https://img.shields.io/badge/created%20by-GuillaumeB75-FFA07A)](https://github.com/GuillaumeB75)
+[![created-by LokieDieKatze](https://img.shields.io/badge/created%20by-LokiDieKatze-FFA07A)](https://github.com/LokiDieKatze)
+[![created-by StellaGreen](https://img.shields.io/badge/created%20by-StellaGreen-FFA07A)](https://github.com/StellaGreen)
 
 ---
 
@@ -20,13 +21,13 @@
 - testnet use : Rinkeby
 - **ComEth dApp**
 
-  This repository contains a React project for our DAO-like ComEth dApp using the Ethereum Blockchain. There will be a "ComEth Factory" allowing a user to create a personalized ComEth project according to its own needs. Each ComEth gathers users who have common interests and offers them tools to organize their activity in a entirely decentralized way, including voting and managing the Ethers of a common pot.
+This repository contains a React project for our DAO-like ComEth DApp using the Ethereum Blockchain. There will be a "ComEth Factory" allowing a user to create a personalized ComEth project. Each ComEth gathers users together and offers them the tools to manage their common pot through the payment of a monthly subscription and a voting system, all in an entirely decentralized structure.
 
 ---
 
 ## Installation
 
-To use this dApp you need to "fork" this repository :
+To use this DApp you need to "fork" this repository :
 
 - Dapp_ComEth :
 
@@ -42,24 +43,25 @@ yarn
 
 ## Smart contracts
 
-- **ComEthFactory.sol**
+### **ComEthFactory.sol**
 
-  This contract allows any user to create a ComEth by picking the options that applies best to its case. After filling out the form, a new ComEth will be created and deployed on Ethereum. The creator of the ComEth will automatically become the owner of the new ComEth Contract and will be the only member allowed to add new members to the ComEth.
+This contract is a factory that allows any user to **create a ComEth community** and choose the price of the subscription (the subscription time lasts 4 weeks). The creator of the contract can share the address of this new ComEth so that other users can join it and start making proposals about how to **manage the Ethers of the common pot.**
 
-- **ComEth.sol**
+### **ComEth.sol**
 
-  Join your ComEth, pay your subscription and start submitting proposals to the community and vote! The amount of the subscription is defined in advance by the ComEth Owner and will remain the same. The subscription time lasts 4 weeks, after which the payment has to be proceeded again. The subscription starts at a specific time and does not depend on the day the user pays.
+The subscription time begins when the ComEth is deployed and created and its price has been determined by the creator. The user of the dApp will have to connect to its Metamask wallet in order to use the functions.
 
-  Submit a proposal:
-  Write a proposal and enter different possible vote options, a timelimit, an amount and payment address for the matching Ether transfer. An event is then emitted.
+First use a ComEth address to **join the community**.
+Then pay for the current subscription in order to **participate in the decision making process**. When the current subscription has run out (a subscription lasts 4 weeks), a new subscription payment is due. If a payment has been missed you will have 1 unpaid subscription added to your account and you won't be able to vote or submit proposals. After 2 unpaid subscriptions you are considered "banned" which means the same besides you don't have the possibility to get funds back if you quit the ComEth.
 
-  Vote:
-  You can vote if you are not banned and if you have the status "active" and are up-to-date with your subscription payments. An event is emitted but your choice is not saved.
-  For a proposal to be approved, it must gather over 50 % of the total number of users. Once it is approved, the payment is processed: the defined amount will be transferred to the registered recipient.
+It is possible to **submit proposals** to the community to decide how to manage the common pot. A proposal is a **planned Ether transaction** to a given address, assuming the proposal is approved by the voters. Give a short description of your suggestion and determine: a time limit for the vote, an amount of Ether for the transaction/payment and the address of the receiver of this transaction.
 
-  Quit your ComEth:
-  You must not be banned if you wish to leave your ComEth. You will have to sort your payment situation out first.
-  The amount that you can get back is calculated on the basis of your fair share (current amount of the common pot divided by the (weighted) number of users ).
+Go to the vote page and select the id of a proposal. Then **vote for or against it**. The result of the vote will occur whether the time has run out or the majority is reached, in which case **the proposal will be approved** (the transaction is automatically processed) **or rejected** (nothing will follow).
+
+Decide to **use toggleIsActive to "take a break"**. In that time you will not have to pay for subscriptions but you also won't be allowed to vote and submit proposals. You can reverse it anytime.
+
+You can **leave the community at anytime** and take your share of the common pot cith you. You will **receive a percentage of the common pot** according to you level of funding in the ComEth.
+Should you be "banned" at this time, you will quit the ComEth but leave your funds behind.
 
 ---
 
