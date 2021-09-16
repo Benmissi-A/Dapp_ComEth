@@ -1,9 +1,21 @@
-# ComEth DApp
+# ComEth Dapp BackEnd
 
-[![made-with-Javascript](https://img.shields.io/badge/Made%20with-Javascript-1f425f.svg)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![made-with-Solidity](https://img.shields.io/badge/Made%20with-Solidity-1f425f.svg)](https://docs.soliditylang.org/en/v0.8.7/) [![made-with-Javascript](https://img.shields.io/badge/Made%20with-Javascript-1f425f.svg)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 
-[![built-with EthersJs](https://img.shields.io/badge/built%20with-Ethers_Js-3677FF)](https://docs.ethers.io/v5/)
-[![built-with chakra-ui](https://img.shields.io/badge/built%20with-Chakra_Ui-3677FF)](https://chakra-ui.com/)
+[![built-with openzeppelin](https://img.shields.io/badge/built%20with-OpenZeppelin-3677FF)](https://docs.openzeppelin.com/)
+[![built-with EthersJs](https://img.shields.io/badge/built%20with-EthersJs-3677FF)](https://docs.ethers.io/v5/)
+
+## Description
+
+- Used Testnet : Rinkeby
+
+### **ComEth**
+
+This repository contains a Hardhat project for our **DAO-like ComEth DApp using the Ethereum Blockchain**. There will be a "ComEth Factory" allowing a user to create a personalized ComEth project. Each ComEth gathers users together and offers them the tools to manage their common pot through the payment of a monthly subscription and a voting system, all in an entirely decentralized structure.
+
+## Architecture version 0.1
+
+![back-architecture](./back-architecture.png)
 
 ## _Built by "Equipe Epique" for its certification project at Alyra, the Blockchain School_ !
 
@@ -16,54 +28,77 @@
 
 ---
 
-## Description
+### Test librairies :
 
-- testnet use : Rinkeby
-- **ComEth dApp**
+- Ethers Js
+- Chai
 
-This repository contains a React project for our DAO-like ComEth DApp using the Ethereum Blockchain. There will be a "ComEth Factory" allowing a user to create a personalized ComEth project. Each ComEth gathers users together and offers them the tools to manage their common pot through the payment of a monthly subscription and a voting system, all in an entirely decentralized structure.
+### Install the Repository :
 
----
+To use this project you need to "fork" this repository :
 
-## Installation
-
-To use this DApp you need to "fork" this repository :
-
-- Dapp_ComEth :
+- ComEth :
 
 On your Git Bash, choose the location then:
 
-```
-git clone https://github.com/Benmissi-A/Dapp_ComEth
-cd Dapp_ComEth
+```zsh
+git clone https://github.com/Benmissi-A/ComEth
 yarn
 ```
 
----
+### You need to add to your environment a .env file :
 
-## Smart contracts
+Add your Infura project ID and your account private key this way:
 
-### **ComEthFactory.sol**
+```
+INFURA_PROJECT_ID="<your_infura_projet_id>"
+DEPLOYER_PRIVATE_KEY="<your_account_private_key>"
+```
 
-This contract is a factory that allows any user to **create a ComEth community** and choose the price of the subscription (the subscription time lasts 4 weeks). The creator of the contract can share the address of this new ComEth so that other users can join it and start making proposals about how to **manage the Ethers of the common pot.**
+## Smart Contracts
+
+### **_ComEthFactory.sol_**
+
+This contract is a **factory** that allows any user to **create a ComEth community** and choose the price of the **subscription** (the subscription time lasts 4 weeks). An event "ComEthCreated" is then emitted. The creator of the contract can share the address of this new ComEth so that other users can join it and **start making proposals about how to manage the Ethers of the common pot**.
 
 ### **ComEth.sol**
 
-The subscription time begins when the ComEth is deployed and created and its price has been determined by the creator. The user of the dApp will have to connect to its Metamask wallet in order to use the functions.
+The subscription time begins when the ComEth is deployed and created and its price has been determined by the creator. The user of the dApp will have to connect to its **Metamask** wallet in order to use the functions.
 
-First use a ComEth address to **join the community**.
-Then pay for the current subscription in order to **participate in the decision making process**. When the current subscription has run out (a subscription lasts 4 weeks), a new subscription payment is due. If a payment has been missed you will have 1 unpaid subscription added to your account and you won't be able to vote or submit proposals. After 2 unpaid subscriptions you are considered "banned" which means the same besides you don't have the possibility to get funds back if you quit the ComEth.
+- **addUsers()**
 
-It is possible to **submit proposals** to the community to decide how to manage the common pot. A proposal is a **planned Ether transaction** to a given address, assuming the proposal is approved by the voters. Give a short description of your suggestion and determine: a time limit for the vote, an amount of Ether for the transaction/payment and the address of the receiver of this transaction.
+The first step would be to **join the ComEth** through the function addUser(). The user is directly considered as an active user but it must **pay the subscription** before being able to **participate in decision making activities**.
+An event "UserAdded" is emitted with its address as parameter.
 
-Go to the vote page and select the id of a proposal. Then **vote for or against it**. The result of the vote will occur whether the time has run out or the majority is reached, in which case **the proposal will be approved** (the transaction is automatically processed) **or rejected** (nothing will follow).
+- **pay()**
 
-Decide to **use toggleIsActive to "take a break"**. In that time you will not have to pay for subscriptions but you also won't be allowed to vote and submit proposals. You can reverse it anytime.
+After joining the ComEth the user has the possibility to pay its first subscription so he can start participating.
+The **payment is due every 4 weeks**. If it misses the deadline once it gets 1 unpaidSubscription, if it misses twice it gets 2, etc. Note: after 2 unpaidSubscription, the user receives the status "banned", also implying counting as an inactive user, than prevents from submitting proposals, voting and getting Ether back when quitting ComEth. Using the pay() function, the **due amount of ether is automatically calculated** and the user can go back to normal and participate again it the decision making.
+A "Deposited" event is emitted, saving its address and the paid amount of Ether.
 
-You can **leave the community at anytime** and take your share of the common pot cith you. You will **receive a percentage of the common pot** according to you level of funding in the ComEth.
-Should you be "banned" at this time, you will quit the ComEth but leave your funds behind.
+- **submitProposal()**
 
----
+The user can submit to the community **a proposal for an Ether transaction**. To do so, the user must not have the status "inactive" and must be up-to-date regarding his subscription.
+To submit a proposal the user enters as parameters a short description, a period of time (for the votes), the address of the recipient for the transaction of Ether, as well as the amount of Ether to be transferred.
+An "Proposalcreated" event is emitted with the unique id of the proposal just created and its description as arguments.
+
+- **vote()**
+
+The user would use the id of a proposal to check its details and **vote for or against** it.
+It must be "active" and have no unpaidSubscription to be ale to vote.
+After the time to vote has run out, the proposal will be adopted by **absolute majority**, meaning that strictly more than 50% of the active users must have voted for the proposal, otherwise it will be rejected.
+The calculation of the votes numbers is processed in the vote() function. This way, if a majority is reached before the end of the time period, **the vote will be directly approved or rejected**.
+Next, the **corresponding transaction is automatically launched if and only if the proposal has been approved**.
+At the end of the voting process, an event "Voted" is emitted, registering the voter's address, the id of the proposal and its description.
+
+- **toggleIsActive()**
+
+This function allows an user to **"take a break"**. It means it will not have to pay the subscription until the reverses the action. This is one of the cases where an user is said "inactive", it will not count by the calculation of the majority.
+
+- **quitComEth()**
+
+It is possible to **quit the ComEth at anytime** and get back an amount of Ether determined on the basis of your fair share of the common pot: it calculates the percentage of your investment towards the contract and gives back that **percentage of the current balance of the common pot**.
+If an user has the status "banned" it can still quit the ComEth but won't be allowed to withdraw its share. This can be fixed by paying the accumulated unpaid subscriptions first.
 
 ## Licence
 
